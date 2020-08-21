@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>HTML CALCULATOR</h1>
+    <div id="calc-parent">
+      <div class="column" id="display-value">0</div>
+      <div class="row">
+        <div class="calc-button column" id="clear">AC</div>
+        <div class="calc-button column" id="back">CE</div>
+        <div class="calc-button calc-button-operator column" id="division">
+          /
+        </div>
+      </div>
+      <div class="row">
+        <div class="calc-button calc-button-num column" id="seven">7</div>
+        <div class="calc-button calc-button-num column" id="eight">8</div>
+        <div class="calc-button calc-button-num column" id="nine">9</div>
+        <div
+          class="calc-button calc-button-operator column"
+          id="multiplication"
+        >
+          *
+        </div>
+      </div>
+      <div class="row">
+        <div class="calc-button calc-button-num column" id="four">4</div>
+        <div class="calc-button calc-button-num column" id="five">5</div>
+        <div class="calc-button calc-button-num column" id="six">6</div>
+        <div class="calc-button calc-button-operator column" id="subtraction">
+          -
+        </div>
+      </div>
+      <div class="row">
+        <div class="calc-button calc-button-num column" id="one">1</div>
+        <div class="calc-button calc-button-num column" id="two">2</div>
+        <div class="calc-button calc-button-num column" id="three">3</div>
+        <div class="calc-button calc-button-operator column" id="addition">
+          +
+        </div>
+      </div>
+      <div class="row">
+        <div class="calc-button calc-button-num column" id="zero">0</div>
+        <div class="calc-button column" id="decimal">.</div>
+        <div class="calc-button calc-button-operator column" id="equals">=</div>
+      </div>
+    </div>
+    <script>
+      var oneButton = document.getElementById("one");
+      var twoButton = document.getElementById("two");
+      var threeButton = document.getElementById("three");
+      var fourButton = document.getElementById("four");
+      var fiveButton = document.getElementById("five");
+      var sixButton = document.getElementById("six");
+      var sevenButton = document.getElementById("seven");
+      var eightButton = document.getElementById("eight");
+      var nineButton = document.getElementById("nine");
+      var zeroButton = document.getElementById("zero");
+
+      var decimalButton = document.getElementById("decimal");
+      var clearButton = document.getElementById("clear");
+      var backButton = document.getElementById("back");
+      var displayvalelement = document.getElementById("display-value");
+      var displayVal = "0";
+      var pendingVal;
+      var evalStringArray = [];
+
+      var calcNumBtns = document.getElementsByClassName("calc-button-num");
+      var calcOperatorBtns = document.getElementsByClassName(
+        "calc-button-operator"
+      );
+
+      var updateDisplayValue = (clickObj) => {
+        var btnText = clickObj.target.innerText;
+
+        if (displayVal === "0") {
+          displayVal = "";
+        }
+        displayVal += btnText;
+        displayvalelement.innerText = displayVal;
+      };
+
+      var performOperation = (clickObj) => {
+        var operator = clickObj.target.innerText;
+
+        switch (operator) {
+          case "+":
+            pendingVal = displayVal;
+            displayVal = "0";
+            displayvalelement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push("+");
+            break;
+
+          case "-":
+            pendingVal = displayVal;
+            displayVal = "0";
+            displayvalelement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push("-");
+            break;
+
+          case "*":
+            pendingVal = displayVal;
+            displayVal = "0";
+            displayvalelement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push("*");
+            break;
+
+          case "/":
+            pendingVal = displayVal;
+            displayVal = "0";
+            displayvalelement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push("/");
+            break;
+          case "=":
+            evalStringArray.push(displayVal);
+            var evaluation = eval(evalStringArray.join(""));
+            displayVal = evaluation + "";
+            displayvalelement.innerText = displayVal;
+            evalStringArray = [];
+
+            break;
+
+          default:
+            break;
+        }
+      };
+
+      for (i = 0; i < calcNumBtns.length; i++) {
+        calcNumBtns[i].addEventListener("click", updateDisplayValue, false);
+      }
+      for (i = 0; i < calcOperatorBtns.length; i++) {
+        calcOperatorBtns[i].addEventListener("click", performOperation, false);
+      }
+
+      clearButton.onclick = () => {
+        displayVal = "0";
+        pendingVal = undefined;
+        evalStringArray = [];
+        displayvalelement.innerText = displayVal;
+      };
+
+      backButton.onclick = () => {
+        let lengthOfDisplay = displayVal.length;
+        displayVal = displayVal.slice(0, lengthOfDisplay - 1);
+
+        if (displayVal === "") displayVal = "0";
+
+        displayvalelement.innerText = displayVal;
+      };
+
+      decimalButton.onclick = () => {
+        if (!displayVal.includes(".")) displayVal += ".";
+      };
+    </script>
+  </body>
+</html>

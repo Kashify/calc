@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.calc-button {
+  background-color: silver;
+  color: black;
+  width: 30px;
+  height: 50px;
+  border: 1px;
+  text-align: center;
+  font-size: 35px;
+  font-weight: 100px;
+  padding-top: 3px;
+}
+.row {
+  display: table;
+  table-layout: fixed;
+  width: 200px;
+}
+.column {
+  display: table-cell;
+}
+#zero {
+  width: 100px;
+  border-radius: 0px 0px 0px 7px;
+}
+#clear {
+  width: 55px;
+}
+#display-value {
+  height: 80px;
+  color: white;
+  text-align: right;
+  border-left: 1px;
+  border-right: 1px;
+  border-top: 1px;
+  font-size: 32px;
+  background-color: lightslategray;
+  overflow: hidden;
+  padding: 12px;
+  font-size: 50px;
+  white-space: nowrap;
+  border-radius: 7px 7px 0 0;
+  width: 176px;
+}
+.calc-button-operator {
+  background-color: orange;
+  color: white;
+}
+h1 {
+  text-align: center;
+  margin-top: 50px;
+}
+#equals {
+  border-radius: 0 0 7px 0;
+  width: 50px;
+}
+#decimal {
+  width: 50px;
+}
+#clear {
+  padding-left: 5px;
+}
+#calc-parent {
+  margin-left: calc(50% - 100px);
+}
+.calc-button:hover {
+  background-color: orange;
+}
